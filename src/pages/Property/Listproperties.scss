@@ -1,0 +1,35 @@
+
+.container__all-cards {
+    margin: 2em auto;
+    width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+    .container__list-all-properties {
+        max-width: 1600px;
+    }
+
+    .container__all-cards {
+        max-width: 1200px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    .container__list-all-properties {
+        max-width: 90%;
+    }
+
+    .container__all-cards {
+        max-width: 90%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container__list-all-properties {
+        max-width: 90%;
+    }
+
+    .container__all-cards {
+        max-width: 90%;
+    }
+}

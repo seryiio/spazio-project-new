@@ -1,0 +1,11 @@
+#error-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    color: rgb(16, 16, 16);
+    height: 30em;
+    text-align: center;
+}

@@ -1,0 +1,47 @@
+.container__contact {
+    margin: 0 auto;
+    .container__contact--row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(450px,1fr));
+        .col {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            padding: 2em;
+        }
+        .col-2 {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+
+            .col-2__row-1 {
+                display: flex;
+                justify-content: center;
+                align-items: start;
+                flex-direction: column;
+                height: 100%;
+                width: 100%;
+            }
+
+            .col-2__row-2 {
+                .img {
+                    display: flex;
+                    justify-content: center;
+                    align-items: end;
+                    max-width: 100%;
+                    height: 100%;
+                    img {
+                        width: 45%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .container__contact {
+        max-width: 1200px;
+    }
+}

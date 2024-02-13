@@ -1,0 +1,201 @@
+.header-dark {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 998;
+    background-color: #00000000;
+    transition: background-color 0.5s ease-in-out;
+
+    .header__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        margin-left: auto;
+        margin-right: auto;
+
+        .header__content--left {
+            flex: 1;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 2em;
+
+            .logo {
+                width: 20%;
+                max-width: 15%;
+                overflow: hidden;
+
+                svg {
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                    display: block;
+
+                    .path-logo {
+                        fill: white;
+                    }
+                }
+            }
+
+            .navegation {
+                width: 80%;
+
+                ul {
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    gap: 1em;
+
+                    li {
+                        list-style: none;
+
+                        a {
+                            text-decoration: none;
+                            color: white;
+                            transition: color 0.2s ease-in-out;
+                        }
+
+                        a:hover {
+                            color: #FCA311;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .header__content--right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .contact {
+                padding: .5em 1em .5em 1em;
+                border-radius: 16px;
+                background-color: rgb(255, 255, 255);
+
+                .contact-a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-decoration: none;
+                    color: rgb(0, 0, 0);
+                    cursor: pointer;
+                    gap: .5em;
+
+                    svg {
+                        fill: rgb(0, 0, 0);
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+
+.header-dark-mobile {
+    position: sticky;
+    top: 0;
+    left: 0;
+    grid-column: 1/2;
+    grid-row: 1/3;
+    display: none;
+    background-color: #e6060600;
+    z-index: 998;
+
+    .header-mobile__content {
+        grid-column: 1/2;
+        grid-row: 1/3;
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        width: 100%;
+        margin: .5em auto;
+
+        .header-mobile__content--left {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 2em;
+            width: 50%;
+
+            .logo {
+                width: 10em;
+                max-width: 100%;
+                overflow: hidden;
+
+                svg {
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                    display: block;
+
+                    .path-logo-mobile {
+                        fill: white;
+                    }
+                }
+            }
+        }
+
+
+        .header__content--right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+
+            .menu-icon {
+                cursor: pointer;
+                font-size: 2em;
+                transition: transform 0.3s ease-in-out;
+
+                svg {
+                    fill: #ffffff;
+                }
+            }
+
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .header__content {
+        max-width: 1200px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    .header-dark {
+        display: none;
+    }
+
+    .header-dark-mobile {
+        display: flex;
+
+        .header-mobile__content {
+            max-width: 90%;
+            padding: 0 auto;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .header-dark {
+        display: none;
+    }
+
+    .header-dark-mobile {
+        display: flex;
+
+        .header-mobile__content {
+            max-width: 90%;
+            padding: 0 auto;
+        }
+    }
+}

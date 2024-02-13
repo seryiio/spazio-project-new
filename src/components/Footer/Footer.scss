@@ -1,0 +1,147 @@
+.footer {
+    margin-top: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: #eeeeee;
+    fill: rgb(0, 0, 0);
+
+    a {
+        text-decoration: none;
+        color: black;
+        transition: color 0.2s ease;
+    }
+    
+    a:hover {
+        color: #fca311;
+    }
+
+    .footer__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        margin: 1em auto;
+        gap: 2em;
+
+        .footer__content--row-1 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 1fr;
+            grid-template-areas:
+                "column-1 column-2 column-3";
+            width: 100%;
+            row-gap: 2em;
+
+            .column-1 {
+                grid-area: column-1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 2em;
+
+                .social-media,
+                .phone-number,
+                .mail {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 1em;
+
+                }
+
+            }
+
+            .column-2 {
+                grid-area: column-2;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                gap: 2em;
+
+                .enterprise,
+                .contact,
+                .benefits,
+                .complaints-book {
+                    display: flex;
+                    gap: 1em;
+                    flex-direction: column;
+
+                    h4 {
+                        font-weight: bold;
+                    }
+                }
+
+            }
+
+            .column-3 {
+                grid-area: column-3;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2em;
+
+                .book-and-terms,
+                .terms {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 1em;
+                }
+            }
+
+        }
+
+        .footer__content--row-2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 90%;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .footer {
+        .footer__content {
+            max-width: 1200px;
+
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    .footer {
+        .footer__content {
+            max-width: 90%;
+            .footer__content--row-1 {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                grid-template-areas:
+                    "column-2 column-2"
+                    "column-1 column-3";
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        .footer__content {
+            max-width: 90%;
+            .footer__content--row-1 {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr;
+                grid-template-areas: "column-2" "column-1" "column-3";
+            }
+        }
+    }
+}
