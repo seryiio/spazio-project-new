@@ -19,8 +19,6 @@ interface Props {
 
 export function Card({ properties, districtFilter }: Props) {
 
-    console.log(districtFilter);
-
     const getMinBed = (property: Property) => {
         return property.apartments.reduce(
             (acc, apartment) => {
@@ -46,46 +44,46 @@ export function Card({ properties, districtFilter }: Props) {
         );
     };
 
-    const getMinMaxBed = (property: Property) => {
-        return property.apartments.reduce(
-            (acc, apartment) => {
-                return {
-                    minQuantityBed: Math.min(acc.minQuantityBed, apartment.quantityBed),
-                    maxQuantityBed: Math.max(acc.maxQuantityBed, apartment.quantityBed),
-                };
-            },
-            {
-                minQuantityBed: Infinity,
-                maxQuantityBed: -Infinity,
-            }
-        );
-    };
+    // const getMinMaxBed = (property: Property) => {
+    //     return property.apartments.reduce(
+    //         (acc, apartment) => {
+    //             return {
+    //                 minQuantityBed: Math.min(acc.minQuantityBed, apartment.quantityBed),
+    //                 maxQuantityBed: Math.max(acc.maxQuantityBed, apartment.quantityBed),
+    //             };
+    //         },
+    //         {
+    //             minQuantityBed: Infinity,
+    //             maxQuantityBed: -Infinity,
+    //         }
+    //     );
+    // };
 
-    const getMinBath = (property: Property) => {
-        return property.apartments.reduce(
-            (acc, apartment) => {
-                return {
-                    minQuantityBath: Math.min(acc.minQuantityBath, apartment.quantityBath),
-                };
-            },
-            {
-                minQuantityBath: Infinity,
-            }
-        );
-    };
+    // const getMinBath = (property: Property) => {
+    //     return property.apartments.reduce(
+    //         (acc, apartment) => {
+    //             return {
+    //                 minQuantityBath: Math.min(acc.minQuantityBath, apartment.quantityBath),
+    //             };
+    //         },
+    //         {
+    //             minQuantityBath: Infinity,
+    //         }
+    //     );
+    // };
 
-    const getMaxBath = (property: Property) => {
-        return property.apartments.reduce(
-            (acc, apartment) => {
-                return {
-                    maxQuantityBath: Math.max(acc.maxQuantityBath, apartment.quantityBath),
-                };
-            },
-            {
-                maxQuantityBath: -Infinity,
-            }
-        );
-    };
+    // const getMaxBath = (property: Property) => {
+    //     return property.apartments.reduce(
+    //         (acc, apartment) => {
+    //             return {
+    //                 maxQuantityBath: Math.max(acc.maxQuantityBath, apartment.quantityBath),
+    //             };
+    //         },
+    //         {
+    //             maxQuantityBath: -Infinity,
+    //         }
+    //     );
+    // };
 
     const getMinPrice = (property: Property) => {
         return property.apartments.reduce(
@@ -177,7 +175,7 @@ export function Card({ properties, districtFilter }: Props) {
                                                 </div>
                                             </div>
                                             <div className="see-more">
-                                                <Link className="a" to={`/propiedades/${property.id}`}>Ver mas</Link>
+                                                <Link reloadDocument className="a" to={`/propiedades/${property.id}`}>Ver mas</Link>
                                             </div>
                                             <div className="price-max">
                                                 <div className="min-max-values">

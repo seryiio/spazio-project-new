@@ -9,7 +9,7 @@ export const INITIAL_PROPERTY: Property[] = [
         province: 'Huaura',
         district: 'Huacho',
         country: 'Peru',
-        imagePrincipal: 'http://localhost:5173/src/assets/img/Sales_Project/1%20-%20Proyecto%20en%20Venta.jpg',
+        imagePrincipal: 'src/assets/img/Sales_Project/1-ProyectoenVenta.jpg',
         apartments: [{
             id: 1,
             number: 1,

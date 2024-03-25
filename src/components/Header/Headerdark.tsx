@@ -1,15 +1,28 @@
 import { Link } from "react-router-dom";
 
 import './HeaderDark.scss'
+import { useState } from "react";
 
 export function Headerdark() {
+    const [sideBar, setSidebar] = useState(false);
+    const [fix, setFix] = useState(false);
+    function setFixed() {
+        if (window.scrollY > 0) {
+            setFix(true);
+        } else setFix(false);
+    }
+    function setSidebarPosition() {
+        setSidebar(!sideBar);
+    }
+
+    window.addEventListener("scroll", setFixed);
     return (
         <>
-            <header className="header-dark">
+            <header className={fix ? `header-dark fixed` : `header-dark`}>
                 <div className="header__content">
                     <div className="header__content--left">
                         <div className="logo">
-                            <a href="/">
+                            <Link reloadDocument to={`/`}>
                                 <svg width="412" height="124" viewBox="0 0 412 124" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_253_2)">
                                         <path
@@ -27,15 +40,15 @@ export function Headerdark() {
                                             <rect width="412" height="124" fill="white" />
                                         </clipPath>
                                     </defs>
-                                </svg></a>
+                                </svg></Link>
                         </div>
                         <div className="navegation">
                             <ul>
-                                <li><Link to={`/`} className="navegation-li" >Inicio</Link></li>
-                                <li><Link to={`/nosotros`} className="navegation-li">Nosotros</Link></li>
-                                <li><Link to={`/propiedades`} className="navegation-li">Proyectos</Link></li>
-                                <li><Link to={`/beneficios`} className="navegation-li">Beneficios</Link></li>
-                                <li><Link to={`/contacto`} className="navegation-li">Contáctanos</Link></li>
+                                <li><Link reloadDocument to={`/`} className="navegation-li" >Inicio</Link></li>
+                                <li><Link reloadDocument to={`/nosotros`} className="navegation-li">Nosotros</Link></li>
+                                <li><Link reloadDocument to={`/propiedades`} className="navegation-li">Proyectos</Link></li>
+                                <li><Link reloadDocument to={`/beneficios`} className="navegation-li">Beneficios</Link></li>
+                                <li><Link reloadDocument to={`/contacto`} className="navegation-li">Contáctanos</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -87,6 +100,25 @@ export function Headerdark() {
                     </div>
                 </div>
             </div>
+            
+            {sideBar && (
+                <div className={sideBar ? "sidebar mostrar" : "sidebar"}>
+                    <div className="flex justify-end items-center">
+                        <button onClick={setSidebarPosition}>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="15" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg>
+                        </button>
+                    </div>
+                    <div className="navegation">
+                        <ul>
+                            <li><Link reloadDocument to={`/`} className="navegation-li" >Inicio</Link></li>
+                            <li><Link reloadDocument to={`/nosotros`} className="navegation-li">Nosotros</Link></li>
+                            <li><Link reloadDocument to={`/propiedades`} className="navegation-li">Proyectos</Link></li>
+                            <li><Link reloadDocument to={`/beneficios`} className="navegation-li">Beneficios</Link></li>
+                            <li><Link reloadDocument to={`/contacto`} className="navegation-li">Contáctanos</Link></li>
+                        </ul>
+                    </div>
+                </div>
+            )}
         </>
     )
 }

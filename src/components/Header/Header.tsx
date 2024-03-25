@@ -4,11 +4,15 @@ import './Header.scss'
 import { useState } from "react";
 
 export function Header() {
+    const [sideBar, setSidebar] = useState(false);
     const [fix, setFix] = useState(false);
     function setFixed() {
         if (window.scrollY > 0) {
             setFix(true);
         } else setFix(false);
+    }
+    function setSidebarPosition() {
+        setSidebar(!sideBar);
     }
 
     window.addEventListener("scroll", setFixed);
@@ -40,11 +44,11 @@ export function Header() {
                         </div>
                         <div className="navegation">
                             <ul>
-                                <li><Link to={`/`} className="navegation-li" >Inicio</Link></li>
-                                <li><Link to={`/nosotros`} className="navegation-li">Nosotros</Link></li>
-                                <li><Link to={`/propiedades`} className="navegation-li">Proyectos</Link></li>
-                                <li><Link to={`/beneficios`} className="navegation-li">Beneficios</Link></li>
-                                <li><Link to={`/contacto`} className="navegation-li">Contáctanos</Link></li>
+                                <li><Link reloadDocument to={`/`} className="navegation-li" >Inicio</Link></li>
+                                <li><Link reloadDocument to={`/nosotros`} className="navegation-li">Nosotros</Link></li>
+                                <li><Link reloadDocument to={`/propiedades`} className="navegation-li">Proyectos</Link></li>
+                                <li><Link reloadDocument to={`/beneficios`} className="navegation-li">Beneficios</Link></li>
+                                <li><Link reloadDocument to={`/contacto`} className="navegation-li">Contáctanos</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -55,7 +59,7 @@ export function Header() {
                                     <path
                                         d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" />
                                 </svg>
-                                <p>(51) 999-999-999</p>
+                                <p>(51) 980 - 826 - 815</p>
                             </a>
                         </div>
                     </div>
@@ -87,15 +91,33 @@ export function Header() {
                         </div>
                     </div>
                     <div className="header__content--right">
-                        <div className="menu-icon">
+                        <button className="menu-icon" onClick={setSidebarPosition}>
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
                                 <path
                                     d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
                             </svg>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
+            {sideBar && (
+                <div className={sideBar ? "sidebar mostrar" : "sidebar"}>
+                    <div className="flex justify-end items-center">
+                        <button onClick={setSidebarPosition}>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="15" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg>
+                        </button>
+                    </div>
+                    <div className="navegation">
+                        <ul>
+                            <li><Link reloadDocument to={`/`} className="navegation-li" >Inicio</Link></li>
+                            <li><Link reloadDocument to={`/nosotros`} className="navegation-li">Nosotros</Link></li>
+                            <li><Link reloadDocument to={`/propiedades`} className="navegation-li">Proyectos</Link></li>
+                            <li><Link reloadDocument to={`/beneficios`} className="navegation-li">Beneficios</Link></li>
+                            <li><Link reloadDocument to={`/contacto`} className="navegation-li">Contáctanos</Link></li>
+                        </ul>
+                    </div>
+                </div>
+            )}
         </>
     )
 }

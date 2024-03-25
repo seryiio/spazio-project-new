@@ -4,15 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import logoWhatsapp from '../../assets/img/Enterprise/icon-whatsapp.svg'
 
 import { Autoplay, Navigation, Pagination, EffectFade } from 'swiper/modules';
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 
 import "./Home.scss"
 
@@ -22,15 +13,31 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
 import { Property } from '@/data/Property';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Card } from '@/components/Card/Card';
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 interface Props {
     properties: Property[];
 }
 
 export function Home({ properties }: Props) {
+
+    let [searchParams, setSearchParams] = useSearchParams();
+
+    const searchPropertiesByDistrict = searchParams.get('asd');
+
+    useEffect(() => {
+        console.log(searchPropertiesByDistrict)
+    }, [searchPropertiesByDistrict]);
+
+
+    const handleSubmitSearchProperty = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedValue = Array.from(e.target.selectedOptions)
+            .map(option => option.value)
+            .join(", ");
+        setSearchParams({ searchPropertiesByDistrict: `${selectedValue}` });
+    }
 
     const getMinPrice = (property: Property) => {
         return property.apartments.reduce(
@@ -66,13 +73,13 @@ export function Home({ properties }: Props) {
         </option>
     );
 
-    const [selectedDistrict, setSelectedDistrict] = useState<string[]>([]);
+    // const [selectedDistrict, setSelectedDistrict] = useState<string[]>([]);
 
-    const handleSelectedDistrictChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedValues = Array.from(e.target.selectedOptions, option => option.value);
-        setSelectedDistrict(selectedValues);
-        console.log(selectedValues);
-    }
+    // const handleSelectedDistrictChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    //     const selectedValues = Array.from(e.target.selectedOptions, option => option.value);
+    //     setSelectedDistrict(selectedValues);
+    //     console.log(selectedValues);
+    // }
 
     {
         return (
@@ -97,7 +104,7 @@ export function Home({ properties }: Props) {
                                                         <h1>{property.name}</h1>
                                                         <p>{property.direction}, {property.province}, {property.district}</p>
                                                         <div className="button">
-                                                            <Link className="a" to={`propiedades/${property.id}`}>Ver mas</Link>
+                                                            <Link reloadDocument className="a" to={`propiedades/${property.id}`}>Ver mas</Link>
                                                         </div>
                                                     </div>
                                                     <div className="swiper-slide__content--img">
@@ -144,12 +151,14 @@ export function Home({ properties }: Props) {
                                             </SelectGroup>
                                         </SelectContent>
                                     </Select> */}
-                                    <select className="select-district" onChange={handleSelectedDistrictChange}>
+                                    <select className="select-district" onChange={handleSubmitSearchProperty}>
                                         <option value="" hidden>Selecciona un distrito...</option>
                                         {listDistrict}
                                     </select>
                                 </div>
-                                <Link to="" onClick={e => console.log(e)}>Buscar</Link>
+                                <Link
+                                    to={`/propiedades?${searchParams}`}
+                                >Buscar</Link>
                             </div>
                         </div>
                     </div>
@@ -162,7 +171,7 @@ export function Home({ properties }: Props) {
                                         <h2>Lujo en Cada Rincón con<strong> Spazio</strong></h2>
                                     </div>
                                     <div className="right">
-                                        <Link to={`/propiedades`}>Explorar
+                                        <Link reloadDocument to={`/propiedades`}>Explorar
                                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 448 512">
                                                 <path
                                                     d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z" />
@@ -238,7 +247,7 @@ export function Home({ properties }: Props) {
                                                                 </div>
                                                             </div>
                                                             <div className="button-more-details">
-                                                                <Link className="a" to={`propiedades/${property.id}`}>Más detalles</Link>
+                                                                <Link reloadDocument className="a" to={`propiedades/${property.id}`}>Más detalles</Link>
                                                             </div>
                                                         </div>
                                                         {property.apartments.map((apartment) => (

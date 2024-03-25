@@ -1,13 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Selectproperty.scss'
 import { Property } from "@/data/Property";
 import Listproperties from '../../pages/Property/ListProperties';
+import { useSearchParams } from 'react-router-dom';
 
 interface Props {
     properties: Property[];
 }
 
 export function Selectproperty({ properties }: Props) {
+
+    let [searchParams, setSearchParams] = useSearchParams();
+
+    const searchPropertiesByDistrict = searchParams.get('asd');
+
+    useEffect(() => {
+        console.log(searchPropertiesByDistrict);
+    }, [searchPropertiesByDistrict]);
+
+
+    const handleSubmitSearchProperty = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedValue = Array.from(e.target.selectedOptions)
+            .map(option => option.value)
+            .join(", ");
+        setSelectedState(selectedValue);
+        setSearchParams({ searchPropertiesByDistrict: `${selectedValue}` });
+    }
 
     const uniqueDistrict = Array.from(new Set(properties.map(propertiesPerDistrict => propertiesPerDistrict.district)));
 
@@ -17,25 +35,22 @@ export function Selectproperty({ properties }: Props) {
 
     const [selectedState, setSelectedState] = useState("0");
 
-    const handleSelectedStateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedValue = Array.from(e.target.selectedOptions)
-            .map(option => option.value)
-            .join(", ");
-        setSelectedState(selectedValue);
-        console.log(selectedValue);
-    }
+    // const handleSelectedStateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    //     const selectedValue = Array.from(e.target.selectedOptions)
+    //         .map(option => option.value)
+    //         .join(", ");
+    //     setSelectedState(selectedValue);
+    //     console.log(selectedValue);
+    // }
 
-    const [selectedDistrict, setSelectedDistrict] = useState("");
+    // const [selectedDistrict, setSelectedDistrict] = useState("");
 
-    const handleSelectedDistrictChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedValue = Array.from(e.target.selectedOptions)
-            .map(option => option.value)
-            .join(", ");
-        setSelectedState(selectedValue);
-        console.log(selectedValue);
-    }
-
-    console.log(selectedDistrict);
+    // const handleSelectedDistrictChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    //     const selectedValue = Array.from(e.target.selectedOptions)
+    //         .map(option => option.value)
+    //         .join(", ");
+    //     setSelectedState(selectedValue);
+    // }
 
     return (
         <>
@@ -55,7 +70,7 @@ export function Selectproperty({ properties }: Props) {
                     <div className="district">
                         <span>Distrito:</span>
                         <div className="district__select">
-                            <select name="" id="" onChange={handleSelectedDistrictChange}>
+                            <select name="" id="" onChange={handleSubmitSearchProperty}>
                                 <option value="" hidden>Selecciona un distrito...</option>
                                 <option value="0">Todos</option>
                                 {listDistrict}

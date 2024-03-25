@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 import './index.scss'
@@ -17,7 +17,7 @@ import { Contact } from './pages/Contact/Contact.tsx';
 
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/", element: <App />, errorElement: <Error />,
   },
